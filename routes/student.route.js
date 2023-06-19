@@ -9,6 +9,6 @@ const router = express.Router();
 router.use(authValidation);
 router.use(verifyRoles(ROLES_LIST.Student));
 // Dashboard
-router.get('/dashboard', getClassSData);
+router.get('/:classId', getClassSData);
 
 export default router;
