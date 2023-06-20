@@ -102,13 +102,12 @@ export async function createCalendarEvent(clsId, data) {
 }
 
 export async function deleteEventByTitle({ classId: classId, title: title }) {
-  console.log('title', title);
-  console.log('classId', classId);
   try {
     const result = await client
       .db('Dashboard')
       .collection('ClassData')
       .updateOne({ classId: classId }, { $pull: { events: { title: title } } });
+    return result;
   } catch (error) {
     console.log(error);
   }

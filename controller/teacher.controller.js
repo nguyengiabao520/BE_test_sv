@@ -132,7 +132,6 @@ export async function deleteAssignment(request, response, next) {
 export async function addEvent(request, response, next) {
   const { classId } = request.params;
   const data = request.body;
-  console.log(data);
   const clsId = Number(classId);
   try {
     const addCalendarEvent = await createCalendarEvent(clsId, data);
@@ -208,9 +207,6 @@ export async function addResults(request, response, next) {
   const { classId } = request.params;
   const { examType } = request.body;
   const data = request.body;
-
-  console.log(examType);
-
   const clsId = Number(classId);
   try {
     const getData = await getClassData(clsId);
@@ -218,8 +214,6 @@ export async function addResults(request, response, next) {
     const dataExists = getData[0]?.results?.some(
       (obj) => obj.examType === examType
     );
-
-    console.log(dataExists);
     if (dataExists) {
       throw createError.Forbidden('Result already exists');
     } else {
@@ -295,5 +289,8 @@ export async function addMiscellaneousInfo(request, response, next) {
     const result = await UpdateMiscellaneousInfo(clsId, data);
     if (!result) throw createError.InternalServerError();
     response.send({ message: 'Progress Updated successfully' });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
 }

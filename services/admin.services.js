@@ -7,7 +7,6 @@ export async function getAdminData() {
       .collection('ClassData')
       .find({})
       .toArray();
-    console.log('adminData', result);
     return result;
   } catch (error) {
     console.log(error);
@@ -111,7 +110,6 @@ export async function updateStaffDataByClsId(clsId, id, data) {
         { classId: clsId, 'staff.id': id },
         { $set: { 'staff.$': data } }
       );
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
