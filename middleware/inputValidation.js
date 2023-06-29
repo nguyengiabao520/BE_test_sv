@@ -8,7 +8,9 @@ export const signUpValidation = () => {
       .isLength({ min: 3 })
       .withMessage('username must be at least 3 characters')
       .trim(),
-    check('email', 'Please enter a valid email address').isEmail(),
+    check('email', 'Please enter a valid email address')
+      .isEmail()
+      .normalizeEmail(),
     check('password')
       .notEmpty()
       .withMessage('Password should not be empty')
@@ -40,7 +42,9 @@ export const signUpValidation = () => {
 
 export const loginValidation = () => {
   return [
-    check('email', 'Please enter a valid email address').isEmail(),
+    check('email', 'Please enter a valid email address')
+      .isEmail()
+      .normalizeEmail(),
     check('password').notEmpty().withMessage('Password field cannot be empty'),
     (request, response, next) => {
       const errors = validationResult(request);
@@ -57,7 +61,9 @@ export const loginValidation = () => {
 
 export const forgotPasswordvalidation = () => {
   return [
-    check('email', 'Please enter a valid email address').isEmail(),
+    check('email', 'Please enter a valid email address')
+      .isEmail()
+      .normalizeEmail(),
     (request, response, next) => {
       const errors = validationResult(request);
       if (errors.isEmpty()) {
