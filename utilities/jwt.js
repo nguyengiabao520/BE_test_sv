@@ -1,10 +1,11 @@
 import jwt from 'jsonwebtoken';
 
+
 export const signVerifyAccountToken = async (email) => {
   const payload = {
     email: email,
   };
-  const secret = process.env.VERIFY_ACCOUNT_TOKEN_SECRET;
+  const secret = "concac";
 
   try {
     const token = jwt.sign(payload, secret);
@@ -20,7 +21,7 @@ export const signAccessToken = async (access, username) => {
     access: access,
     username: username,
   };
-  const secret = process.env.ACCESS_TOKEN_SECRET;
+  const secret = "cailon";
   const options = { expiresIn: '2h' };
 
   try {
@@ -36,7 +37,7 @@ export const signRefreshToken = async (username) => {
   const payload = {
     username: username,
   };
-  const secret = process.env.REFRESH_TOKEN_SECRET;
+  const secret = "capvu";
   const options = { expiresIn: '24h' };
 
   try {
@@ -52,7 +53,7 @@ export const signResetPasswordToken = async (email, password) => {
   const payload = {
     email: email,
   };
-  const secret = process.env.RESET_PASSWORD_TOKEN_SECRET + password;
+  const secret = "hondai" + password;
   const options = { expiresIn: '10min' };
 
   try {
@@ -66,7 +67,7 @@ export const signResetPasswordToken = async (email, password) => {
 
 export const verifyResetPasswordToken = async (token, password) => {
   try {
-    const secret = process.env.RESET_PASSWORD_TOKEN_SECRET + password;
+    const secret = "hondai" + password;
     const result = jwt.verify(token, secret);
     return result;
   } catch (err) {

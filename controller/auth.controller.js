@@ -130,7 +130,7 @@ export const refreshUser = async (request, response, next) => {
     if (!refreshToken) throw createError.Unauthorized();
 
     // issuing Access Token
-    const secret = process.env.REFRESH_TOKEN_SECRET;
+    const secret = "capvu";
     jwt.verify(refreshToken, secret, async (error, decoded) => {
       try {
         if (error) throw createError.Forbidden();

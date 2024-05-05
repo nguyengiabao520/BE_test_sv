@@ -13,7 +13,7 @@ export const authValidation = (request, response, next) => {
 
     const verify = jwt.verify(
       accessToken,
-      process.env.ACCESS_TOKEN_SECRET,
+      "cailon",
       (err, decoded) => {
         if (err) throw createError.Forbidden();
         request.user = decoded.username;

@@ -27,7 +27,9 @@ export const getClassTData = async (request, response, next) => {
 
   try {
     //to authenticate user
+    
     const checkAccess = classAssigned.includes(clsId);
+   
     if (!checkAccess) throw createError.Forbidden();
 
     const getData = await getTeacherData(clsId);
